@@ -54,6 +54,11 @@ What you get:
 - For E2E, add more specs in `e2e/tests/`, and use API helpers/fixtures to seed state fast.
 - Wire CI to run `mvn test` and `npm test` in parallel; publish Playwright traces/reports as artifacts.
 
+## CI/CD
+- GitHub Actions template at `.github/workflows/ci.yml` runs Java unit/integration tests and Playwright E2E.
+- Set secrets/variables: `E2E_BASE_URL`, `E2E_USER_EMAIL`, `E2E_USER_PASSWORD` (and optionally `E2E_PROTECTED_PATH`). The E2E job skips unless `E2E_BASE_URL` is set.
+- Workflow uses `npm ci`, `npx playwright install --with-deps`, and `npm test` in `e2e/`. Adjust branches or job dependencies as needed.
+
 ## Notes
 - Spring JDBC is included to keep the repository concrete; swap for your data layer as needed.
 - Keep selectors stable with `data-cy` attributes to avoid brittle tests.
