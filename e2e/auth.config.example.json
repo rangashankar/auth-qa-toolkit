@@ -1,0 +1,30 @@
+{
+  "loginPath": "/login",
+  "protectedPath": "/dashboard",
+  "loginRequestPattern": "api/login",
+  "selectors": {
+    "email": "[data-cy=email] input",
+    "password": "[data-cy=password] input",
+    "submit": "[data-cy=submit]",
+    "logout": "[data-cy=logout]",
+    "error": "text=/invalid|unauthorized/i",
+    "userIndicator": "[data-cy=user]"
+  },
+  "credentials": {
+    "valid": {
+      "email": "qa@example.com",
+      "password": "Passw0rd!"
+    },
+    "invalid": {
+      "email": "bad@example.com",
+      "password": "wrong"
+    }
+  },
+  "messages": {
+    "invalid": "Invalid credentials"
+  },
+  "tokens": {
+    "cookiePattern": "auth|token",
+    "storageKeys": ["token", "refresh"]
+  }
+}

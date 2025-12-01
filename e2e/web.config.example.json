@@ -1,0 +1,19 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "defaultTimeout": 30000,
+  "screenshotOnFailure": true,
+  "scenarios": {
+    "smoke-home": [
+      { "action": "goto", "target": "/" },
+      { "action": "expect-visible", "target": "[data-cy=app-shell], body" },
+      { "action": "click", "target": "[data-cy=primary-cta]" },
+      { "action": "wait-for-response", "url": "/api", "status": [200, 204, 302] },
+      { "action": "expect-url-contains", "value": "/next" },
+      { "action": "expect-attribute", "target": "[data-cy=primary-cta]", "name": "disabled", "value": "true" },
+      { "action": "wait-for-requests", "url": "/next/api", "status": 200, "atLeast": 1 },
+      { "action": "expect-count", "target": "[data-cy=list] li", "count": 3 },
+      { "action": "upload-file", "target": "input[type=file]", "files": "fixtures/sample.pdf" },
+      { "action": "expect-toast", "target": "[data-cy=toast]", "value": "Uploaded" }
+    ]
+  }
+}
